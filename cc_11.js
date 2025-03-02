@@ -69,3 +69,8 @@ borrower.borrowBook(book.title);}}
 const library = new Library();
 library.addBook(book1);
 library.listBooks();  
+
+// Task 4: Implementing Book Borrowing
+library.lendBook(201, 123456); // barrower getting a book
+console.log(book1.getDetails());// updated book details 
+console.log(borrower1.borrowedBooks);// display barrowerd books
