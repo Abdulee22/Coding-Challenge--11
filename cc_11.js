@@ -36,4 +36,36 @@ borrower1.borrowBook("The Great Gatsby");
 console.log(borrower1.borrowedBooks); // Output: ["The Great Gatsby"]
 borrower1.returnBook("The Great Gatsby");
 console.log(borrower1.borrowedBooks); // Output: []
+
+// Task 3: Creating a Library Class //
+class Library {
+ constructor() {
+this.books = []; // Store books
+ this.borrowers = [];} // Store borrowers
     
+ addBook(book) {
+this.books.push(book);} // Add new books to library
+    
+listBooks() {
+this.books.forEach(book => console.log(book.getDetails()));} // list all books
+    
+ // lend book to barrower
+ lendBook(borrowerId, isbn) {
+const book = this.books.find(b => b.isbn === isbn);
+ const borrower = this.borrowers.find(b => b.borrowerId === borrowerId);
+if (book && borrower && book.copies > 0) {
+book.updateCopies(-1);
+borrower.borrowBook(book.title);}} 
+    
+ //  Return a barrowed book 
+ returnBook(borrowerId, isbn) {
+ const book = this.books.find(b => b.isbn === isbn);
+ const borrower = this.borrowers.find(b => b.borrowerId === borrowerId);
+ if (book && borrower && borrower.borrowedBooks.includes(book.title)) {
+ book.updateCopies(1);
+ borrower.returnBook(book.title);}}}
+    
+// Test Case //
+const library = new Library();
+library.addBook(book1);
+library.listBooks();  
